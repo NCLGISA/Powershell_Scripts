@@ -1,0 +1,1 @@
+﻿Get-Mailbox -resultsize unlimited | Select-Object displayname,primarysmtpaddress,@{Name="Department";Expression={(get-user $_.alias).department}} -expandproperty emailaddresses| Where-Object {$_.smtpaddress -like "*yourdomain.com*"}| Select-Object displayName,primarysmtpaddress,SmtpAddress,Department | Export-Csv C:\EmailAddresses.csv
